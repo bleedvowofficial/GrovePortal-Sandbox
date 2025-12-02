@@ -1,0 +1,8 @@
+/* NOTE: globals.css — global styling */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: sans-serif;
+}
