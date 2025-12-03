@@ -1,40 +1,34 @@
-"use client";
+// app/dashboard/page.js
+// This is the main sandbox dashboard.
+// It loads the UbermanCounter, HeadphoneAlarm,
+// and an experimental log display.
 
-import UbermanCounter from "@/components/UbermanCounter";
-import HeadphoneAlarm from "@/components/HeadphoneAlarm";
-import SandboxLogCard from "@/components/SandboxLogCard";
-import AuthGuard from "@/components/AuthGuard";
-import { useState } from "react";
+import UbermanCounter from '@/components/UbermanCounter';
+import HeadphoneAlarm from '@/components/HeadphoneAlarm';
+import SandboxLogCard from '@/components/SandboxLogCard';
 
 export default function Dashboard() {
-  // Track whether alarm is active
-  const [alarmActive, setAlarmActive] = useState(false);
-
-  // Example function to trigger alarm manually
-  const toggleAlarm = () => setAlarmActive((prev) => !prev);
-
   return (
-    <AuthGuard>
-      <div className="p-6 space-y-6">
-        <h1 className="text-3xl font-bold mb-4">Sandbox Dashboard</h1>
+    <main>
+      <h1>Sandbox Dashboard</h1>
 
-        {/* Uberman Counter shows next nap, time remaining */}
+      {/* Uberman Counter */}
+      <section style={{ marginTop: '30px' }}>
+        <h2>Uberman Cycle</h2>
         <UbermanCounter />
+      </section>
 
-        {/* Headphone alarm component */}
-        <HeadphoneAlarm active={alarmActive} />
+      {/* Alarm System */}
+      <section style={{ marginTop: '30px' }}>
+        <h2>Headphone Alarm Test</h2>
+        <HeadphoneAlarm />
+      </section>
 
-        {/* Button to toggle alarm manually for testing */}
-        <button
-          onClick={toggleAlarm}
-          className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-        >
-          {alarmActive ? "Stop Alarm" : "Trigger Alarm"}
-        </button>
-
-        {/* Sandbox log panel shows events, testing logs, etc */}
-        <SandboxLogCard logs={["Sandbox initialized", "Alarm ready"]} />
-      </div>
-    </AuthGuard>
+      {/* Sandbox logs */}
+      <section style={{ marginTop: '30px' }}>
+        <h2>Sandbox Logs</h2>
+        <SandboxLogCard />
+      </section>
+    </main>
   );
 }
